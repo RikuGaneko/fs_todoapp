@@ -4,9 +4,10 @@ require_once('fn.php');
 
 try
 {
-
+    // $_POSTはtitle・contents・listcodeを含む
     $todo = $_POST;
     
+    // todoを編集する
     $fn = new FnTodoapp();
     $fn->todoUpdate($todo);
 
