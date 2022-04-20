@@ -1,23 +1,15 @@
 <?php
 
-require_once('dbc.php');
+require_once('fn.php');
 
 try
 {
 
-    $dbc = new Dbc();
-    $dbh = $dbc->dbConnect();
-
     $list_code = $_GET['listcode'];
 
-    //ラジオボタンで選ばれたデータを取得
-    $sql = 'SELECT title FROM posts WHERE ID=?';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $list_code;
-    $stmt->execute($data);
+    $fn = new FnTodoapp();
+    $todo_title = $fn->getRadioTitle($list_code);
 
-    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-    $todo_title = $rec['title'];
 
     $dbh = null;
 

@@ -1,5 +1,8 @@
 <?php
 
+require_once('dbc.php');
+require_once('fn.php');
+
 try
 {
     
@@ -9,16 +12,10 @@ try
     $todo_title = htmlspecialchars($todo_title, ENT_QUOTES, 'UTF-8');
     $todo_contents = htmlspecialchars($todo_contents, ENT_QUOTES, 'UTF-8');
     
-    $dsn = 'mysql:dbname=todoapp;host=localhost;charset=utf8';
-    $user = 'root';
-    $password = '';
-    $dbh = new PDO($dsn, $user, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // 日本時間を取得し、後に必要な'$date'を作成
-    $date = new DateTime();
-    $date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
-    $date = $date->format('Y-m-d H:i:s');
+    $dbc = new Dbc();
+    $fn = new FnTodoapp();
+    $dbh = $dbc->dbConnect();
+    $date = $fn->getJapanTime();
     
     // NewTodoPageで書かれた内容をデータベースに追加
     $sql = 'INSERT INTO posts(title, content, created_at, updated_at) VALUES(?, ?, ?, ?)';
@@ -30,13 +27,6 @@ try
     $stmt->execute($data);
     
     $dbh = null;
-    
-    print '新しくやることを追加しました';
-    print '<br/>';
-    print 'タイトル';
-    print '<br/>';
-    print $todo_title;
-    print '<br/>';
     
 }
 catch(Exception $e)
@@ -54,6 +44,9 @@ catch(Exception $e)
     <title>TodoApp</title>
 </head>
 <body>
+<p>新しくやることを追加しました。</p>
+<p>タイトル</p>
+<p><?php echo $todo_title ?></p>
 <a href="todoapp_list.php">戻る</a>
 
 </body>

@@ -1,15 +1,14 @@
 <?php
 
+require_once('dbc.php');
+
 try
 {
     
     $list_code = $_POST['listcode'];
     
-    $dsn = 'mysql:dbname=todoapp;host=localhost;charset=utf8';
-    $user = 'root';
-    $password = '';
-    $dbh = new PDO($dsn, $user, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbc = new Dbc();
+    $dbh = $dbc->dbConnect();
     
     //ラジオボタンで選ばれたデータを削除
     $sql = 'DELETE FROM posts WHERE ID=?';
@@ -35,9 +34,7 @@ catch(Exception $e)
     <title>TodoApp</title>
 </head>
 <body>
-    
-削除しました。<br/>
-<br/>
+<p>削除しました。</p>
 <a href="todoapp_list.php">戻る</a>
 
 </body>

@@ -1,24 +1,14 @@
 <?php
 
+require_once('fn.php');
+
 try
 {
     
     $list_code = $_GET['listcode'];
     
-    $dsn = 'mysql:dbname=todoapp;host=localhost;charset=utf8';
-    $user = 'root';
-    $password = '';
-    $dbh = new PDO($dsn, $user, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    //ラジオボタンで選ばれたデータを取得
-    $sql = 'SELECT title FROM posts WHERE ID=?';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $list_code;
-    $stmt->execute($data);
-    
-    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-    $todo_title = $rec['title'];
+    $fn = new FnTodoapp();
+    $todo_title = $fn->getRadioTitle($list_code);
     
     $dbh = null;
     
@@ -38,16 +28,12 @@ catch (Exception $e)
     <title>TodoApp</title>
 </head>
 <body>
-Todo削除<br/>
-<br/>
-Todoコード<br/>
-<?php print $list_code; ?>
-<br/>
-タイトル<br/>
-<?php print $todo_title; ?>
-<br/>
-このTodoを削除してよろしいですか？<br/>
-<br/>
+<h3>Todo削除</h3>
+<p>Todoコード</p>
+<p><?php print $list_code; ?></p>
+<p>タイトル</p>
+<p><?php print $todo_title; ?></p>
+<p>このTodoを削除してよろしいですか？</p>
 <form method="post" action="todoapp_delete_done.php">
     <input type="hidden" name="listcode" value="<?php print $list_code; ?>">
     <input type="button" onclick="history.back()" value="戻る">

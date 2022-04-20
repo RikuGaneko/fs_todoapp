@@ -1,5 +1,8 @@
 <?php
 
+require_once('dbc.php');
+require_once('fn.php');
+
 try
 {
     
@@ -10,16 +13,10 @@ try
     $todo_title = htmlspecialchars($todo_title, ENT_QUOTES, 'UTF-8');
     $todo_contents = htmlspecialchars($todo_contents, ENT_QUOTES, 'UTF-8');
     
-    $dsn = 'mysql:dbname=todoapp;host=localhost;charset=utf8';
-    $user = 'root';
-    $password = '';
-    $dbh = new PDO($dsn, $user, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // 日本時間を取得し、後に必要な'$date'を作成
-    $date = new DateTime();
-    $date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
-    $date = $date->format('Y-m-d H:i:s');
+    $dbc = new Dbc();
+    $fn = new FnTodoapp();
+    $dbh = $dbc->dbConnect();
+    $date = $fn->getJapanTime();
     
     // 編集画面で打ち込まれたデータを新たに上書き
     $sql = 'UPDATE posts SET title=?, content=?, updated_at=? WHERE ID=?';
@@ -48,7 +45,7 @@ catch(Exception $e)
     <title>TodoApp</title>
 </head>
 <body>
-修正しました。<br/>
+<p>修正しました。</p>
 <br/>
 <a href="todoapp_list.php">戻る</a>
 
