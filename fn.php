@@ -76,9 +76,25 @@ Class FnTodoapp extends Dbc {
 
         $dbh = $this->dbConnect();
 
-        $sql = 'DELETE FROM posts WHERE ID=?';
+        $sql = "DELETE FROM $this->table_name WHERE ID=?";
         $stmt = $dbh->prepare($sql);
         $data[] = $list_code;
+        $stmt->execute($data);
+
+    }
+
+    // 編集画面で打ち込まれたデータを新たに上書き
+    public function todoUpdate($todo) {
+
+        $dbh = $this->dbConnect();
+        $date = $this->getJapanTime();
+
+        $sql = "UPDATE $this->table_name SET title=?, content=?, updated_at=? WHERE ID=?";
+        $stmt = $dbh->prepare($sql);
+        $data[] = $todo['title'];
+        $data[] = $todo['contents'];
+        $data[] = $date;
+        $data[] = $todo['listcode'];
         $stmt->execute($data);
 
     }
