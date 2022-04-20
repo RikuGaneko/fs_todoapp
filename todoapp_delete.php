@@ -4,9 +4,10 @@ require_once('fn.php');
 
 try
 {
-    
+    // $_POSTはtitle・contents・listcodeを含む
     $list_code = $_GET['listcode'];
     
+    //ラジオボタンで選ばれたデータ(todo_title)を取得
     $fn = new FnTodoapp();
     $todo_title = $fn->getRadioTitle($list_code);
     

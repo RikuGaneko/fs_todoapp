@@ -4,9 +4,10 @@ require_once('fn.php');
 
 try
 {
-    
+    // $_POSTはtitle・contents・listcodeを含む
     $list_code = $_POST['listcode'];
     
+    //ラジオボタンで選ばれたTodoを削除
     $fn = new FnTodoapp();
     $fn->todoDelete($list_code);
     

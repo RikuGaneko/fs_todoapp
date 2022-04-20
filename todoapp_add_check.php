@@ -2,6 +2,7 @@
 
 require_once('fn.php');
 
+// $_POSTはtitle・contents・listcodeを含む
 $todo = $_POST;
 
 function h($s) {
@@ -11,6 +12,7 @@ function h($s) {
 $todo_title = h($todo['title']);
 $todo_contents = h($todo['contents']);
 
+//タイトルとコンテンツの文字が入っているか。また長過ぎないかのチェック
 $fn = new FnTodoapp();
 $fn->validate($todo);
 

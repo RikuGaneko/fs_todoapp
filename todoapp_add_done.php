@@ -4,7 +4,7 @@ require_once('fn.php');
 
 try
 {
-
+    // $_POSTはtitle・contents・listcodeを含む
     $todo = $_POST;
 
     function h($s) {
@@ -14,6 +14,7 @@ try
     $todo_title = h($todo['title']);
     $todo_contents = h($todo['contents']);
     
+    //Todoを追加
     $fn = new FnTodoapp();
     $fn->todoCreate($todo);
     

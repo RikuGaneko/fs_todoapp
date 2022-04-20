@@ -2,7 +2,7 @@
 
 Class Dbc {
 
-    //DBにコネクションして、$dbhにそのコネクション状態を代入
+    //DBにコネクトして、$dbhにそのコネクション状態を代入
     public function dbConnect() {
         $dsn = 'mysql:dbname=todoapp;host=localhost;charset=utf8';
         $user = 'root';
