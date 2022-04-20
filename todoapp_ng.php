@@ -6,7 +6,7 @@
 </head>
 <body>
 
-Todoが選択されていません。<br/>
+<p>Todoが選択されていません。</p>
 <a href="todoapp_list.php">戻る</a>
 
 </body>

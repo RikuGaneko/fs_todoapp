@@ -6,7 +6,7 @@
 </head>
 <body>
 
-キーワードが入力されていません。<br/>
+<p>キーワードが入力されていません。</p>
 <a href="todoapp_list.php">戻る</a>
 
 </body>
