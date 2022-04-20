@@ -1,6 +1,6 @@
 <?php
 
-require_once('fn.php');
+require_once('fn2.php');
 
 try
 {
@@ -8,8 +8,8 @@ try
     $list_code = $_GET['listcode'];
     
     //ラジオボタンで選ばれたデータ(todo_title)を取得
-    $fn = new FnTodoapp();
-    $todo_title = $fn->getRadioTitle($list_code);
+    $fn2 = new FnTodoapp2();
+    $todo_title = $fn2->getRadioTitle($list_code);
     
     $dbh = null;
     

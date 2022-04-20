@@ -2,14 +2,15 @@
 
 require_once('dbc.php');
 require_once('fn.php');
+require_once('fn2.php');
 
 try
 {
 
     $dbc = new Dbc();
-    $fn = new FnTodoapp();
+    $fn2 = new FnTodoapp2();
     $dbh = $dbc->dbConnect();
-    $rec1 = $fn->getCountData();
+    $rec1 = $fn2->getCountData();
 
     
     //表示するページの番号を取得
