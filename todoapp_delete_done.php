@@ -1,20 +1,14 @@
 <?php
 
-require_once('dbc.php');
+require_once('fn.php');
 
 try
 {
     
     $list_code = $_POST['listcode'];
     
-    $dbc = new Dbc();
-    $dbh = $dbc->dbConnect();
-    
-    //ラジオボタンで選ばれたデータを削除
-    $sql = 'DELETE FROM posts WHERE ID=?';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $list_code;
-    $stmt->execute($data);
+    $fn = new FnTodoapp();
+    $fn->todoDelete($list_code);
     
     $dbh = null;
     

@@ -5,12 +5,14 @@ require_once('fn.php');
 try
 {
 
+    //ラジオボタンで押されたTodoのリスト番号を取得
     $list_code = $_GET['listcode'];
 
+    //ラジオボタンで押されたTodoのタイトルを取得
     $fn = new FnTodoapp();
     $todo_title = $fn->getRadioTitle($list_code);
 
-
+    //DBログアウト
     $dbh = null;
 
 }

@@ -1,7 +1,6 @@
 <?php
 
 require_once('dbc.php');
-require_once('fn.php');
 
 try
 {
@@ -14,9 +13,8 @@ try
     $todo_contents = htmlspecialchars($todo_contents, ENT_QUOTES, 'UTF-8');
     
     $dbc = new Dbc();
-    $fn = new FnTodoapp();
     $dbh = $dbc->dbConnect();
-    $date = $fn->getJapanTime();
+    $date = $dbc->getJapanTime();
     
     // 編集画面で打ち込まれたデータを新たに上書き
     $sql = 'UPDATE posts SET title=?, content=?, updated_at=? WHERE ID=?';
