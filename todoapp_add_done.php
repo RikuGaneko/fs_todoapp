@@ -1,30 +1,21 @@
 <?php
 
-require_once('dbc.php');
 require_once('fn.php');
 
 try
 {
+
+    $todo = $_POST;
+
+    function h($s) {
+        return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+    }
+
+    $todo_title = h($todo['title']);
+    $todo_contents = h($todo['contents']);
     
-    $todo_title = $_POST['title'];
-    $todo_contents = $_POST['contents'];
-    
-    $todo_title = htmlspecialchars($todo_title, ENT_QUOTES, 'UTF-8');
-    $todo_contents = htmlspecialchars($todo_contents, ENT_QUOTES, 'UTF-8');
-    
-    $dbc = new Dbc();
     $fn = new FnTodoapp();
-    $dbh = $dbc->dbConnect();
-    $date = $fn->getJapanTime();
-    
-    // NewTodoPageで書かれた内容をデータベースに追加
-    $sql = 'INSERT INTO posts(title, content, created_at, updated_at) VALUES(?, ?, ?, ?)';
-    $stmt = $dbh->prepare($sql);
-    $data[] = $todo_title;
-    $data[] = $todo_contents;
-    $data[] = $date;
-    $data[] = $date;
-    $stmt->execute($data);
+    $fn->todoCreate($todo);
     
     $dbh = null;
     

@@ -2,13 +2,15 @@
 
 require_once('fn.php');
 
-$list_code = $_POST['listcode'];
-$todo_title = $_POST['title'];
-$todo_contents = $_POST['contents'];
 $todo = $_POST;
 
-$todo_title = htmlspecialchars($todo_title, ENT_QUOTES, 'UTF-8');
-$todo_contents = htmlspecialchars($todo_contents, ENT_QUOTES, 'UTF-8');
+function h($s) {
+    return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+}
+
+$list_code = $todo['listcode'];
+$todo_title = h($todo['title']);
+$todo_contents = h($todo['contents']);
 
 $fn = new FnTodoapp();
 $fn->validate($todo);

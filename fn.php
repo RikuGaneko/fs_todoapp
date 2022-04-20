@@ -4,6 +4,8 @@ require_once('dbc.php');
 
 Class FnTodoapp extends Dbc {
 
+    protected $table_name = 'posts';
+
     //データ数を取得
     public function getCountData() {
 
@@ -16,16 +18,6 @@ Class FnTodoapp extends Dbc {
 
         return $rec1;
         $dbh = null;
-
-    }
-
-    // 日本時間を取得し、後に編集機能で必要な'$date'を作成
-    public function getJapanTime() {
-
-        $date = new DateTime();
-        $date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
-        $date = $date->format('Y-m-d H:i:s');
-        return $date;
 
     }
 
@@ -60,6 +52,34 @@ Class FnTodoapp extends Dbc {
         $todo_title = $rec['title'];
 
         return $todo_title;
+
+    }
+
+    //Todoを追加
+    public function todoCreate($todo) {
+
+        $dbh = $this->dbConnect();
+        $date = $this->getJapanTime();
+
+        $sql = "INSERT INTO $this->table_name (title, content, created_at, updated_at) VALUES(?, ?, ?, ?)";
+        $stmt = $dbh->prepare($sql);
+        $data[] = $todo['title'];
+        $data[] = $todo['contents'];
+        $data[] = $date;
+        $data[] = $date;
+        $stmt->execute($data);
+
+    }
+
+    //ラジオボタンで選ばれたTodoを削除
+    public function todoDelete($list_code) {
+
+        $dbh = $this->dbConnect();
+
+        $sql = 'DELETE FROM posts WHERE ID=?';
+        $stmt = $dbh->prepare($sql);
+        $data[] = $list_code;
+        $stmt->execute($data);
 
     }
 
