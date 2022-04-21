@@ -1,42 +1,11 @@
 <?php
 
-require_once('dbc.php');
-require_once('fn.php');
 require_once('fn2.php');
 
 try
 {
 
-    $dbc = new Dbc();
     $fn2 = new FnTodoapp2();
-    $dbh = $dbc->dbConnect();
-    $rec1 = $fn2->getCountData();
-
-    
-    //表示するページの番号を取得
-    define('MAX','5');
-    $todo_num = $rec1['COUNT(*)'];
-    $max_page = ceil($todo_num / MAX);
-
-    //すべてのデータをカラムごとにそれぞれの変数に格納
-    $sql2 = 'SELECT * FROM posts';
-    $stmt2 = $dbh->query($sql2);
-    foreach ($stmt2 as $row)
-    {
-        $todo_ID[] = $row['ID'];
-        $todo_title[] = $row['title'];
-        $todo_content[] = $row['content'];
-        $todo_created_at[] = $row['created_at'];
-    }
-    
-    //ページング機能
-    if(!isset($_GET['page_id'])){
-        $now = 1;
-    }else{
-        $now = $_GET['page_id'];
-    }
-    
-    $start_no = ($now - 1) * MAX;
 
     $dbh = null;
 
@@ -76,28 +45,8 @@ catch (Exception $e)
                 <td>作成日時</td>
             </tr>
             <?php
-                for($i = $start_no; $i < $start_no + 5; $i++)
-                {
-                    if(empty($todo_ID[$i]))
-                    {
-                        break;
-                    }
-                    print '<tr>';
-                    print '<td>';
-                    print '<input type="radio" name="listcode" value="'.$todo_ID[$i].'">';
-                    print '</td>';
-                    print '<td>';
-                    print $todo_title[$i];
-                    print '</td>';
-                    print '<td>';
-                    print $todo_content[$i];
-                    print '</td>';
-                    print '<td>';
-                    print $todo_created_at{$i};
-                    print '</td>';
-                    print '</tr>';
-            
-                }    
+            // 5こずつtodoを表示
+            $fn2->display5(); 
             ?>
         </table>
         <input type="submit" name="add" value="追加">
@@ -105,29 +54,8 @@ catch (Exception $e)
         <input type="submit" name="delete" value="削除">
     </form>
     <?php
-        if($now > 1){ // リンクをつけるかの判定
-            echo '<a href="./todoapp_list.php?page_id='.($now - 1).'">前へ</a>'. '　';
-        } elseif ($now == 1) {
-            echo '';
-        } else {
-            echo '前へ'. '　';
-        }
-     
-        for($i = 1; $i <= $max_page; $i++){
-            if ($i == $now) {
-                echo $now. '　'; 
-            } else {
-                echo '<a href="./todoapp_list.php?page_id='.$i.'">'.$i.'</a>'. '　';
-            }
-        }
-     
-        if($now < $max_page){ // リンクをつけるかの判定
-            echo '<a href="./todoapp_list.php?page_id='.($now + 1).'">次へ</a>'. '　';
-        } elseif ($now == $max_page) {
-            echo '';
-        } else {
-            echo '次へ';
-        }
+    //リンク作成
+    $fn2->link();
     ?>
 </body>
 </html>
