@@ -53,6 +53,7 @@ Class FnTodoapp2 extends Dbc {
 
     }
 
+    // 検索されたキーワードをタイトルに含むやつを見つける
     public function likeSearch($like_title) {
 
         $dbh = $this->dbConnect();
@@ -111,6 +112,100 @@ Class FnTodoapp2 extends Dbc {
         }
 
         // return array($todo_num, $todo_ID[], $todo_title[], $todo_content[], $todo_created_at[], $onnum[]);
+
+    }
+
+    public function forPaging() {
+
+        //ページング機能
+        if(!isset($_GET['page_id'])){
+            $now = 1;
+        }else{
+            $now = $_GET['page_id'];
+        }
+
+        return $now;
+
+    }
+
+    public function display5() {
+
+        $dbh = $this->dbConnect();
+
+        //すべてのデータをカラムごとにそれぞれの変数に格納
+        $sql2 = 'SELECT * FROM posts';
+        $stmt2 = $dbh->query($sql2);
+        foreach ($stmt2 as $row)
+        {
+            $todo_ID[] = $row['ID'];
+            $todo_title[] = $row['title'];
+            $todo_content[] = $row['content'];
+            $todo_created_at[] = $row['created_at'];
+        }
+
+        //ページング機能
+        $now = $this->forPaging();
+        
+        $start_no = ($now - 1) * 5;
+
+        for($i = $start_no; $i < $start_no + 5; $i++)
+        {
+            if(empty($todo_ID[$i]))
+            {
+                break;
+            }
+            print '<tr>';
+            print '<td>';
+            print '<input type="radio" name="listcode" value="'.$todo_ID[$i].'">';
+            print '</td>';
+            print '<td>';
+            print $todo_title[$i];
+            print '</td>';
+            print '<td>';
+            print $todo_content[$i];
+            print '</td>';
+            print '<td>';
+            print $todo_created_at{$i};
+            print '</td>';
+            print '</tr>';
+    
+        }   
+
+    }
+
+    public function link() {
+
+        $rec1 = $this->getCountData();
+        
+        //表示するページの番号を取得
+        define('MAX','5');
+        //todoの数
+        $todo_num = $rec1['COUNT(*)'];
+        // ページの最大値
+        $max_page = ceil($todo_num / MAX);
+        
+        //ページング機能
+        $now = $this->forPaging();
+
+        if($now > 1){ // リンクをつけるかの判定
+            echo '<a href="./todoapp_list.php?page_id='.($now - 1).'">前へ</a>'. '　';
+        } elseif ($now == 1) {
+            echo '';
+        }
+     
+        for($i = 1; $i <= $max_page; $i++){
+            if ($i == $now) {
+                echo $now. '　'; 
+            } else {
+                echo '<a href="./todoapp_list.php?page_id='.$i.'">'.$i.'</a>'. '　';
+            }
+        }
+     
+        if($now < $max_page){ // リンクをつけるかの判定
+            echo '<a href="./todoapp_list.php?page_id='.($now + 1).'">次へ</a>'. '　';
+        } elseif ($now == $max_page) {
+            echo '';
+        }
 
     }
 
