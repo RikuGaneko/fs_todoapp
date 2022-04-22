@@ -7,8 +7,6 @@ try
 
     $fn2 = new FnTodoapp2();
 
-    $dbh = null;
-
 }
 
 
@@ -63,6 +61,7 @@ catch (Exception $e)
         <?php
         //ページングリンク作成
         $fn2->link();
+        $dbh = null;
         ?>
     </div>
 </body>
