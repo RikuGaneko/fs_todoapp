@@ -2,7 +2,7 @@
 
 require_once('dbc.php');
 
-Class FnTodoapp extends Dbc {
+Class Crud extends Dbc {
 
     protected $table_name = 'posts';
 

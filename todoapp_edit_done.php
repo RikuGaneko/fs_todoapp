@@ -1,6 +1,6 @@
 <?php
 
-require_once('fn.php');
+require_once('class/DB/crud.php');
 
 try
 {
@@ -8,8 +8,8 @@ try
     $todo = $_POST;
     
     // todoを編集する
-    $fn = new FnTodoapp();
-    $fn->todoUpdate($todo);
+    $crud = new Crud();
+    $crud->todoUpdate($todo);
     
 }
 catch(Exception $e)

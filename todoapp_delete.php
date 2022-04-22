@@ -1,6 +1,6 @@
 <?php
 
-require_once('fn2.php');
+require_once('class/DB/dbc.php');
 
 try
 {
@@ -8,8 +8,8 @@ try
     $list_code = $_GET['listcode'];
     
     //ラジオボタンで選ばれたデータ(todo_title)を取得
-    $fn2 = new FnTodoapp2();
-    $todo_title = $fn2->getRadioTitle($list_code);
+    $dbc = new Dbc();
+    $todo_title = $dbc->getRadioTitle($list_code);
     
 }
 catch (Exception $e)
