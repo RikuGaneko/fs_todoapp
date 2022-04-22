@@ -10,8 +10,6 @@ try
     // todoを編集する
     $fn = new FnTodoapp();
     $fn->todoUpdate($todo);
-
-    $dbh = null;
     
 }
 catch(Exception $e)

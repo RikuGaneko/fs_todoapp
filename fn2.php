@@ -50,6 +50,7 @@ Class FnTodoapp2 extends Dbc {
         $todo_title = $rec['title'];
 
         return $todo_title;
+        $dbh = null;
 
     }
 
@@ -111,7 +112,7 @@ Class FnTodoapp2 extends Dbc {
     
         }
 
-        // return array($todo_num, $todo_ID[], $todo_title[], $todo_content[], $todo_created_at[], $onnum[]);
+        $dbh = null;
 
     }
 
@@ -169,7 +170,9 @@ Class FnTodoapp2 extends Dbc {
             print '</td>';
             print '</tr>';
     
-        }   
+        }
+
+        $dbh = null;
 
     }
 
@@ -206,6 +209,8 @@ Class FnTodoapp2 extends Dbc {
         } elseif ($now == $max_page) {
             echo '';
         }
+
+        $dbh = null;
 
     }
 

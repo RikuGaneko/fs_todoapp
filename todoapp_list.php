@@ -61,7 +61,6 @@ catch (Exception $e)
         <?php
         //ページングリンク作成
         $fn2->link();
-        $dbh = null;
         ?>
     </div>
 </body>

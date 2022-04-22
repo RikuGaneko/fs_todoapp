@@ -11,8 +11,6 @@ try
     $fn2 = new FnTodoapp2();
     $todo_title = $fn2->getRadioTitle($list_code);
     
-    $dbh = null;
-    
 }
 catch (Exception $e)
 {
