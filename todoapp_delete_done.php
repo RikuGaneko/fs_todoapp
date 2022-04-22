@@ -1,6 +1,6 @@
 <?php
 
-require_once('fn.php');
+require_once('class/DB/crud.php');
 
 try
 {
@@ -8,8 +8,8 @@ try
     $list_code = $_POST['listcode'];
     
     //ラジオボタンで選ばれたTodoを削除
-    $fn = new FnTodoapp();
-    $fn->todoDelete($list_code);
+    $crud = new Crud();
+    $crud->todoDelete($list_code);
     
 }
 catch(Exception $e)

@@ -1,13 +1,13 @@
 <?php
 
-require_once('fn2.php');
+require_once('class/listpage/like.php');
 
 try
 {
 
     $like_title = $_GET['liketitle'];
 
-    $fn2 = new FnTodoapp2();
+    $likesearch = new Likefind();
 
 }
 catch(Exception $e)
@@ -30,7 +30,7 @@ catch(Exception $e)
     <p>ヒットしたタイトルを表示します。</p>
     <p>リンクから飛んでください。</p>
     <?php
-        $fn2->likeSearch($like_title);
+        $likesearch->likeSearch($like_title);
         $dbh = null;
     ?>
     <a href="todoapp_list.php">戻る</a>

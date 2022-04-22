@@ -1,11 +1,13 @@
 <?php
 
-require_once('fn2.php');
+require_once('class/listpage/display5.php');
+require_once('class/listpage/pagination.php');
 
 try
 {
 
-    $fn2 = new FnTodoapp2();
+    $pagination = new Pagination;
+    $display5 = new Display;
 
 }
 
@@ -48,7 +50,7 @@ catch (Exception $e)
             </tr>
             <?php
             // 5こずつtodoを表示
-            $fn2->display5(); 
+            $display5->display5(); 
             ?>
         </table>
         <div class="text-center">
@@ -60,7 +62,7 @@ catch (Exception $e)
     <div>
         <?php
         //ページングリンク作成
-        $fn2->link();
+        $pagination->link();
         ?>
     </div>
 </body>

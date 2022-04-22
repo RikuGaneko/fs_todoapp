@@ -32,6 +32,39 @@ Class Dbc {
 
     }
 
+    //データ数を取得
+    public function getCountData() {
+
+        $dbh = $this->dbConnect();
+
+        $sql1 = 'SELECT COUNT(*) FROM posts';
+        $stmt1 = $dbh->prepare($sql1);
+        $stmt1->execute();
+        $rec1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+
+        return $rec1;
+        $dbh = null;
+
+    }
+
+    //ラジオボタンで選ばれたデータ(todo_title)を取得
+    public function getRadioTitle($list_code) {
+
+        $dbh = $this->dbConnect();
+
+        $sql = 'SELECT title FROM posts WHERE ID=?';
+        $stmt = $dbh->prepare($sql);
+        $data[] = $list_code;
+        $stmt->execute($data);
+    
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+        $todo_title = $rec['title'];
+
+        return $todo_title;
+        $dbh = null;
+
+    }
+
 }
 
 ?>

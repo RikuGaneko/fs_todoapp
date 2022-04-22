@@ -1,6 +1,6 @@
 <?php
 
-require_once('fn.php');
+require_once('class/DB/crud.php');
 
 try
 {
@@ -15,8 +15,8 @@ try
     $todo_contents = h($todo['contents']);
     
     //Todoを追加
-    $fn = new FnTodoapp();
-    $fn->todoCreate($todo);
+    $crud = new Crud();
+    $crud->todoCreate($todo);
     
 }
 catch(Exception $e)
