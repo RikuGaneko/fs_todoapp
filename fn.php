@@ -22,7 +22,7 @@ Class FnTodoapp extends Dbc {
 
     }
 
-    //ラジオボタンで選ばれたTodoを削除
+    //（ラジオボタンで選ばれた）Todoを削除
     public function todoDelete($list_code) {
 
         $dbh = $this->dbConnect();
@@ -34,7 +34,7 @@ Class FnTodoapp extends Dbc {
 
     }
 
-    // 編集画面で打ち込まれたデータを新たに上書き
+    // （編集画面で打ち込まれた）Todoを編集
     public function todoUpdate($todo) {
 
         $dbh = $this->dbConnect();

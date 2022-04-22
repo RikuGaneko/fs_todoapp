@@ -31,6 +31,7 @@ catch(Exception $e)
     <p>リンクから飛んでください。</p>
     <?php
         $fn2->likeSearch($like_title);
+        $dbh = null;
     ?>
     <a href="todoapp_list.php">戻る</a>
 </body>

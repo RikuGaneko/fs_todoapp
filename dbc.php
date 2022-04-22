@@ -2,7 +2,7 @@
 
 Class Dbc {
 
-    //DBにコネクトして、$dbhにそのコネクション状態を代入
+    //DBにコネクトして、$dbhにコネクション状態を代入
     public function dbConnect() {
         $dsn = 'mysql:dbname=todoapp;host=localhost;charset=utf8';
         $user = 'root';
@@ -27,6 +27,7 @@ Class Dbc {
         $date = new DateTime();
         $date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
         $date = $date->format('Y-m-d H:i:s');
+        
         return $date;
 
     }
