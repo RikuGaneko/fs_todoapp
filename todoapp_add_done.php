@@ -18,8 +18,6 @@ try
     $fn = new FnTodoapp();
     $fn->todoCreate($todo);
     
-    $dbh = null;
-    
 }
 catch(Exception $e)
 {

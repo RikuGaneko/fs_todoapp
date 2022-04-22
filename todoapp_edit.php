@@ -12,9 +12,6 @@ try
     $fn2 = new FnTodoapp2();
     $todo_title = $fn2->getRadioTitle($list_code);
 
-    //DBログアウト
-    $dbh = null;
-
 }
 catch (Exception $e)
 {

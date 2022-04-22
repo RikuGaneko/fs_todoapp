@@ -20,6 +20,8 @@ Class FnTodoapp extends Dbc {
         $data[] = $date;
         $stmt->execute($data);
 
+        $dbh = null;
+
     }
 
     //（ラジオボタンで選ばれた）Todoを削除
@@ -31,6 +33,8 @@ Class FnTodoapp extends Dbc {
         $stmt = $dbh->prepare($sql);
         $data[] = $list_code;
         $stmt->execute($data);
+
+        $dbh = null;
 
     }
 
@@ -47,6 +51,8 @@ Class FnTodoapp extends Dbc {
         $data[] = $date;
         $data[] = $todo['listcode'];
         $stmt->execute($data);
+        
+        $dbh = null;
 
     }
 

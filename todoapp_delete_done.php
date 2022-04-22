@@ -11,8 +11,6 @@ try
     $fn = new FnTodoapp();
     $fn->todoDelete($list_code);
     
-    $dbh = null;
-    
 }
 catch(Exception $e)
 {
