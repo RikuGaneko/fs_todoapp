@@ -6,7 +6,7 @@ Class Pagination extends Dbc {
 
     public function forPaging() {
 
-        //現在何ページにいるか（$now）を取得
+        // 現在何ページにいるか（$now）を取得
         if(!isset($_GET['page_id'])){
             $now = 1;
         }else{

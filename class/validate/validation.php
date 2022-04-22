@@ -6,15 +6,21 @@ Class Validation {
     public function validate($todo) {
 
         if($todo['title'] == '') {
-            exit('タイトルが入力されていません。');
+            print('タイトルが入力されていません。');
+            print '<input type="button" onclick="history.back()" value="戻る">';
+            exit();
         }
 
         if(strlen($todo['title']) > 255) {
-            exit('タイトルは255字以内にしてください。');
+            print('タイトルは255字以内にしてください。');
+            print '<input type="button" onclick="history.back()" value="戻る">';
+            exit();
         }
 
         if(empty($todo['contents'])) {
-            exit('内容が入力されていません。');
+            print('内容が入力されていません。');
+            print '<input type="button" onclick="history.back()" value="戻る">';
+            exit();
         }
 
     }
