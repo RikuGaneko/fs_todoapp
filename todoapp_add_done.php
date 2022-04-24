@@ -4,7 +4,7 @@ require_once('class/DB/crud.php');
 
 try
 {
-    // $_POSTはtitle・contents・listcodeを含む
+    // $_POSTはtitle・contentsを含む
     $todo = $_POST;
 
     function h($s) {
