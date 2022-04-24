@@ -1,26 +1,3 @@
-<?php
-
-require_once('class/listpage/display5.php');
-require_once('class/listpage/pagination.php');
-
-try
-{
-
-    $pagination = new Pagination;
-    $display5 = new Display;
-
-}
-
-
-
-catch (Exception $e)
-{
-    print'ただいま障害により大変ご迷惑をお掛けしております。';
-    exit();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,10 +25,8 @@ catch (Exception $e)
                 <td>内容</td>
                 <td>作成日時</td>
             </tr>
-            <?php
-            // 5こずつtodoを表示
-            $display5->display5(); 
-            ?>
+            <!-- 5こずつtodoを表示 -->
+            <?php require_once('class/listpage/display5.php'); ?>
         </table>
         <div class="text-center">
             <input type="submit" name="add" value="追加">
@@ -60,10 +35,8 @@ catch (Exception $e)
         </div>
     </form>
     <div>
-        <?php
-        //ページングリンク作成
-        $pagination->link();
-        ?>
+        <!-- ページングリンク作成 -->
+        <?php require_once('class/listpage/pagination.php'); ?>
     </div>
 </body>
 </html>

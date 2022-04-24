@@ -57,4 +57,7 @@ Class Pagination extends Dbc {
 
 }
 
+$pagination = new Pagination;
+$pagination->link();
+
 ?>

@@ -5,7 +5,9 @@ require_once(__DIR__. '/../DB/dbc.php');
 Class Likefind extends Dbc {
 
     // 検索されたキーワードをタイトルに含むやつを見つける
-    public function likeSearch($like_title) {
+    public function likeSearch() {
+
+        $like_title = $_GET['liketitle'];
 
         $dbh = $this->dbConnect();
         $rec1 = $this->getCountData();
@@ -67,5 +69,8 @@ Class Likefind extends Dbc {
     }
 
 }
+
+$likesearch = new Likefind();
+$likesearch->likeSearch();
 
 ?>
