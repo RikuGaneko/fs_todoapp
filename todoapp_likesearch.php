@@ -1,23 +1,3 @@
-<?php
-
-require_once('class/listpage/like.php');
-
-try
-{
-
-    $like_title = $_GET['liketitle'];
-
-    $likesearch = new Likefind();
-
-}
-catch(Exception $e)
-{
-    print'ただいま障害により大変ご迷惑をお掛けしております。';
-    exit();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +9,7 @@ catch(Exception $e)
 <body>
     <p>ヒットしたタイトルを表示します。</p>
     <p>リンクから飛んでください。</p>
-    <?php
-        $likesearch->likeSearch($like_title);
-    ?>
+    <?php require('class/listpage/like.php'); ?>
     <a href="todoapp_list.php">戻る</a>
 </body>
 </html>

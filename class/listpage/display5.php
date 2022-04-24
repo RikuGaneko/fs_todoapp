@@ -66,4 +66,7 @@ Class Display extends Dbc {
 
 }
 
+$display5 = new Display;
+$display5->display5(); 
+
 ?>
