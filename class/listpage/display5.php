@@ -37,28 +37,8 @@ Class Display extends Dbc {
         
         $start_no = ($now - 1) * 5;
 
-        for($i = $start_no; $i < $start_no + 5; $i++)
-        {
-            if(empty($todo_ID[$i]))
-            {
-                break;
-            }
-            print '<tr>';
-            print '<td>';
-            print '<input type="radio" name="listcode" value="'.$todo_ID[$i].'">';
-            print '</td>';
-            print '<td>';
-            print $todo_title[$i];
-            print '</td>';
-            print '<td>';
-            print $todo_content[$i];
-            print '</td>';
-            print '<td>';
-            print $todo_created_at{$i};
-            print '</td>';
-            print '</tr>';
-    
-        }
+        $array = array($todo_title, $todo_content, $todo_created_at, $todo_ID, $start_no);
+        return $array;
 
         $dbh = null;
 
