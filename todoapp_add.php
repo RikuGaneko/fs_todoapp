@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Create Page</title>
+    <?php require_once('index/head.php'); ?>
 </head>
-<body>
+<body class="d-flex justify-content-center flex-column align-items-center mt-5">
 
 <h1>
     Post New ToDo Page
