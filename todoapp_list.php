@@ -34,9 +34,10 @@
             <input type="submit" name="delete" value="削除">
         </div>
     </form>
+    <!-- ページングリンク作成 -->
     <div>
-        <!-- ページングリンク作成 -->
         <?php require_once('class/listpage/pagination.php'); ?>
     </div>
+
 </body>
 </html>

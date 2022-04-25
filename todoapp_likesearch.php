@@ -1,3 +1,15 @@
+<?php
+
+require_once(__DIR__. '/class/listpage/like.php');
+
+$likesearch = new Likefind();
+$array = $likesearch->likeSearch();
+
+$todo_title = $array[0];
+$onnum = $array[1];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +21,12 @@
 <body>
     <p>ヒットしたタイトルを表示します。</p>
     <p>リンクから飛んでください。</p>
-    <?php require('class/listpage/like.php'); ?>
+    <!-- 検索にかかったTodoのタイトルを全て表示 -->
+    <?php for($i = 0; $i <count($todo_title); $i++): ?>
+        <a href="todoapp_list.php?page_id=<?php echo ceil($onnum[$i] / 5) ?>">
+            <p><?php echo $todo_title[$i] ?></p>
+        </a>
+    <?php endfor; ?>
     <a href="todoapp_list.php">戻る</a>
 </body>
 </html>

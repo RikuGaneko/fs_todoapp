@@ -46,31 +46,16 @@ Class Likefind extends Dbc {
                 $onnum[] = $rec2['COUNT(*)'];
                 
             }
-    
+            
         }
 
-        define('MAX','5');
-        //あいまい検索にかかったタイトルを表示。そのままリンクで飛べる。
-        for($i = 0; $i < $todo_num; $i++)
-        {
-            if(empty($todo_ID[$i]))
-            {
-                break;
-            }
-            print '<a href="todoapp_list.php?page_id='.ceil($onnum[$i] / MAX).'">';
-            print $todo_title[$i];
-            print '</a>';
-            print '</br>';
-    
-        }
+        $array = array($todo_title, $onnum);
+        return $array;
 
         $dbh = null;
 
     }
 
 }
-
-$likesearch = new Likefind();
-$likesearch->likeSearch();
 
 ?>
