@@ -30,10 +30,9 @@ catch(Exception $e)
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>TodoApp</title>
+    <?php require_once('index/head.php'); ?>
 </head>
-<body>
+<body class="d-flex justify-content-center flex-column align-items-center mt-5">
 <p>新しくやることを追加しました。</p>
 <p>タイトル</p>
 <p><?php echo $todo_title ?></p>
